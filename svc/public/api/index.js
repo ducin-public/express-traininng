@@ -1,24 +1,5 @@
-import axios from "axios"
-// const axios = require("axios").default
-
-// config.js
-export const EMPLOYEES_SVC_URL = 'http://localhost:3011'
-export const PROJECTS_SVC_URL = 'http://localhost:3012'
-
-// projects.js
-// getProject(id)
-export const getProject = (id) => {
-  return axios.get(`${PROJECTS_SVC_URL}/projects/${id}`)
-    .then(res => res.data)
-}
-
-// employees.js
-// getEmployee(id)
-// getEmployees(id[]) employees?id=X&id=Y...
-export const getEmployee = async (id) => {
-  const res = await axios.get(`${EMPLOYEES_SVC_URL}/employees/${id}`)
-  return res.data
-}
+import { getProject } from "./projects"
+import { getEmployee } from "./employees"
 
 // public.js
 export const getProjectWithEmployees = async (projectId) => {
@@ -37,6 +18,11 @@ export const getProjectWithEmployees = async (projectId) => {
 }
 
 // native node.js
-module.exports = {
-  getProjectWithEmployees
-}
+// module.exports = {
+//   getProjectWithEmployees
+// }
+
+// ES6 (re-exports)
+export * from './employees'
+export * from './projects'
+export * from './benefits'
